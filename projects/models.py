@@ -1,8 +1,6 @@
-
-
 from django.db import models
 
-from core.mixins import UUIDMixin, TimeStampedModel
+from core.mixins import TimeStampedModel, UUIDMixin
 
 
 class Category(models.Model):
@@ -39,28 +37,30 @@ class Project(UUIDMixin, TimeStampedModel):
     name = models.CharField(verbose_name="Name", max_length=200)
 
     category = models.ForeignKey(verbose_name="Category", to="Category", on_delete=models.RESTRICT, related_name="+")
-    sub_category = models.ForeignKey(verbose_name="Sub-category", to="Category", on_delete=models.RESTRICT, related_name="+")
-    country = models.ForeignKey(verbose_name="Country of product origin", to="Country", on_delete=models.RESTRICT, related_name="+",)
+    sub_category = models.ForeignKey(
+        verbose_name="Sub-category", to="Category", on_delete=models.RESTRICT, related_name="+"
+    )
+    country = models.ForeignKey(
+        verbose_name="Country of product origin",
+        to="Country",
+        on_delete=models.RESTRICT,
+        related_name="+",
+    )
 
     launch_date = models.DateField(verbose_name="Date the project was launched")
     deadline_date = models.DateField(verbose_name="Deadline for crowdfunding")
     goal = models.DecimalField(
         verbose_name="Amount of money the creater needs to complete the project (USD)",
         max_digits=20,
-        decimal_places=2, default=0
+        decimal_places=2,
+        default=0,
     )
     pledged = models.DecimalField(
-        verbose_name="Amount of money pledged to by the crowd (USD)",
-        max_digits=20,
-        decimal_places=2, default=0
+        verbose_name="Amount of money pledged to by the crowd (USD)", max_digits=20, decimal_places=2, default=0
     )
-    backers = models.IntegerField(
-        verbose_name="Number of backers",
-        default=0
-    )
+    backers = models.IntegerField(verbose_name="Number of backers", default=0)
     state = models.IntegerField(
-        verbose_name="Current condition the project",
-        choices=ProjectState.choices, blank=True, null=True
+        verbose_name="Current condition the project", choices=ProjectState.choices, blank=True, null=True
     )
 
     class Meta:
