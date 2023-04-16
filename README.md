@@ -8,13 +8,14 @@ I want to compare django-ninja vs FastAPI.
 
 
 ### TODO:
-- [ ] Properly setup the django project.
-- [ ] Create a model named "Project". 
+- [x] Properly setup the django project.
+- [ ] Create a model named "Project".
 - [ ] Add CRUD endpoints (async).
   - [ ] Create.
   - [ ] Read.
   - [ ] Update.
   - [ ] Delete.
 - [ ] Docker.
+- [ ] Unit tests.
 - [ ] UI? React, Vue, Angular?
 - [ ] Deploy?
