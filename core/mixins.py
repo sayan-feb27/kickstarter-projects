@@ -1,8 +1,10 @@
+import uuid
+
 from django.db import models
 
 
 class UUIDMixin(models.Model):
-    uuid = models.UUIDField(verbose_name="UUID", primary_key=True)
+    uuid = models.UUIDField(verbose_name="UUID", primary_key=True, default=uuid.uuid4, editable=False)
 
     class Meta:
         abstract = True

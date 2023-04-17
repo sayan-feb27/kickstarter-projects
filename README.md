@@ -10,7 +10,7 @@ I want to compare django-ninja vs FastAPI.
 ### TODO:
 - [x] Properly setup the django project.
 - [x] Create a model named "Project".
-- [ ] Load data from a file.
+- [x] Load data from a file.
 - [ ] Add CRUD endpoints (async).
   - [ ] Create.
   - [ ] Read.

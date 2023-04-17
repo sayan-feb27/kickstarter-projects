@@ -66,6 +66,7 @@ class Project(UUIDMixin, TimeStampedModel):
     class Meta:
         verbose_name = "Project"
         verbose_name_plural = "Projects"
+        ordering = ["external_id"]
 
     def __str__(self):
         return f"{self.name} ({self.external_id})"
