@@ -13,10 +13,10 @@ I want to compare django-ninja vs FastAPI.
 - [x] Load data from a file.
 - [ ] Add CRUD endpoints (async).
   - [ ] Create.
-  - [ ] Read.
+  - [x] Read.
   - [ ] Update.
   - [ ] Delete.
 - [ ] Docker.
 - [ ] Unit tests.
-- [ ] UI? React, Vue, Angular?
+- [ ] UI? React, Vue, Angular? Swift?
 - [ ] Deploy?
