@@ -1,6 +1,7 @@
+import http
 from typing import Any
 
-from django.http import Http404, HttpRequest
+from django.http import Http404, HttpRequest, HttpResponse
 from ninja import Router
 
 from schemas.project import ProjectSchema
@@ -21,3 +22,11 @@ async def read_project(request: HttpRequest, obj_id: Any):
     if not obj:
         raise Http404("Project does not exist.")
     return obj
+
+
+@router.delete("/{obj_id}")
+async def delete_project(request: HttpRequest, obj_id: Any):
+    obj = await project_service.delete(obj_id=obj_id)
+    if obj is None:
+        raise Http404("Project does not exist.")
+    return HttpResponse(status=http.HTTPStatus.NO_CONTENT)

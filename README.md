@@ -15,7 +15,7 @@ I want to compare django-ninja vs FastAPI.
   - [ ] Create.
   - [x] Read.
   - [ ] Update.
-  - [ ] Delete.
+  - [x] Delete.
 - [ ] Docker.
 - [ ] Unit tests.
 - [ ] UI? React, Vue, Angular? Swift?

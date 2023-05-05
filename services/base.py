@@ -19,8 +19,8 @@ class BaseService:
     # async def update(self, *args, **kwargs):
     #     raise NotImplementedError
     #
-    # async def delete(self, *args, **kwargs):
-    #     raise NotImplementedError
+    async def delete(self, obj_id: Any):
+        raise NotImplementedError
 
     async def get_queryset(self):
         raise NotImplementedError
@@ -41,3 +41,10 @@ class Service(BaseService):
         qs = await self.get_queryset()
         qs = await sync_to_async(list)(qs[offset : offset + limit])
         return qs
+
+    async def delete(self, obj_id: Any) -> int | None:
+        obj = await self._model.objects.filter(pk=obj_id).afirst()
+        if not obj:
+            return None
+        count, _ = await obj.adelete()
+        return count
