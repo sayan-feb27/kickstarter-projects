@@ -12,9 +12,9 @@ I want to compare django-ninja vs FastAPI.
 - [x] Create a model named "Project".
 - [x] Load data from a file.
 - [ ] Add CRUD endpoints (async).
-  - [ ] Create.
+  - [x] Create.
   - [x] Read.
-  - [ ] Update.
+  - [x] Update.
   - [x] Delete.
 - [ ] Docker.
 - [ ] Unit tests.

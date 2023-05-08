@@ -2,6 +2,7 @@ from typing import Any, Type, TypeVar
 
 from asgiref.sync import sync_to_async
 from django.db.models import Model as DjangoModel, QuerySet
+from ninja import ModelSchema
 
 DBModelType = TypeVar("DBModelType", bound=DjangoModel)  # pylint: disable=invalid-name
 
@@ -13,12 +14,12 @@ class BaseService:
     async def get_multi(self, limit: int = 100, offset: int = 0):
         raise NotImplementedError
 
-    # async def create(self, *args, **kwargs):
-    #     raise NotImplementedError
-    #
-    # async def update(self, *args, **kwargs):
-    #     raise NotImplementedError
-    #
+    async def create(self, obj_in: Any):
+        raise NotImplementedError
+
+    async def update(self, obj_id: Any, obj_in: Any):
+        raise NotImplementedError
+
     async def delete(self, obj_id: Any):
         raise NotImplementedError
 
@@ -41,6 +42,14 @@ class Service(BaseService):
         qs = await self.get_queryset()
         qs = await sync_to_async(list)(qs[offset : offset + limit])
         return qs
+
+    async def create(self, obj_in: ModelSchema):
+        obj = await self._model.objects.acreate(**obj_in.dict(by_alias=True))
+        return obj
+
+    async def update(self, obj_id: Any, obj_in: ModelSchema) -> int:
+        count = await self._model.objects.filter(pk=obj_id).aupdate(**obj_in.dict(by_alias=True, exclude_unset=True))
+        return count
 
     async def delete(self, obj_id: Any) -> int | None:
         obj = await self._model.objects.filter(pk=obj_id).afirst()
