@@ -11,12 +11,13 @@ I want to compare django-ninja vs FastAPI.
 - [x] Properly setup the django project.
 - [x] Create a model named "Project".
 - [x] Load data from a file.
-- [ ] Add CRUD endpoints (async).
+- [x] Add CRUD endpoints (async).
   - [x] Create.
   - [x] Read.
   - [x] Update.
   - [x] Delete.
-- [ ] Docker.
+- [x] Docker.
+- [ ] Deploy — Yandex Cloud.
+  - [ ] Traefik config for production.
+- [ ] React.
 - [ ] Unit tests.
-- [ ] UI? React, Vue, Angular? Swift?
-- [ ] Deploy?

@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  django:
+    container_name: kickstart-project-api
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - REQUIREMENTS_FILE=$REQUIREMENTS_FILE
+    expose:
+      - 8000
+    command: > 
+      sh -c "python manage.py migrate && uvicorn core.asgi:application --reload --host 0.0.0.0 --port 8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.docker.localhost`)"
+  db:
+    image: postgres:14.5
+    restart: always
+    user: postgres
+    container_name: kickstarter-project-db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    env_file:
+      - .db_env
+    expose:
+      - 5432
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  reverse-proxy:
+    image: traefik:v2.10
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+
+volumes:
+  db-data:
+
+networks:
+  default:
+    name: kickstarter-network

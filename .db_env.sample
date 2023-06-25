@@ -1,0 +1,4 @@
+POSTGRES_PASSWORD=password
+DJANGO_DB=kickstarter_project
+DJANGO_DB_USER=kickstarter_user
+DJANGO_DB_USER_PASSWORD=password
