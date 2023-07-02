@@ -6,6 +6,7 @@ Data source is downloaded from [Kaggle Kickstarter Projects](https://www.kaggle.
 
 I want to compare django-ninja vs FastAPI.
 
+[API Docs](http://158.160.66.158/api/v1/docs)
 
 ### TODO:
 - [x] Properly setup the django project.
@@ -17,7 +18,7 @@ I want to compare django-ninja vs FastAPI.
   - [x] Update.
   - [x] Delete.
 - [x] Docker.
-- [ ] Deploy — Yandex Cloud.
+- [x] Deploy — Yandex Cloud (http://158.160.66.158/api/v1/docs).
   - [ ] Traefik config for production.
 - [ ] React.
 - [ ] Unit tests.
