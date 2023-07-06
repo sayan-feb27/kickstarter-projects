@@ -6,6 +6,9 @@ Data source is downloaded from [Kaggle Kickstarter Projects](https://www.kaggle.
 
 I want to compare django-ninja vs FastAPI.
 
+----
+IMHO I feel like django-ninja overall is better choice than FastAPI.
+
 [API Docs](http://158.160.66.158/api/v1/docs)
 
 ### TODO:
@@ -19,6 +22,6 @@ I want to compare django-ninja vs FastAPI.
   - [x] Delete.
 - [x] Docker.
 - [x] Deploy — Yandex Cloud (http://158.160.66.158/api/v1/docs).
-  - [ ] Traefik config for production.
+  - [x] Traefik config for production.
 - [ ] React.
 - [ ] Unit tests.
